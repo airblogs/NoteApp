@@ -1,0 +1,8 @@
+{
+    "title": "App1",
+    "identifier": "com.yourcompany.wizardEVAP.App1",
+    "orientation": "auto",
+    "versioncode": 1,
+    "versionname": "1.0.0",
+    "stage": "test"
+}

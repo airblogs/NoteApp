@@ -1,0 +1,8 @@
+{
+    "title": "App_replication",
+    "identifier": "com.yourcompany.wizardEVAP.Appreplication",
+    "orientation": "auto",
+    "versioncode": 1,
+    "versionname": "1.0.0",
+    "stage": "test"
+}

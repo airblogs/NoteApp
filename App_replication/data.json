@@ -1,0 +1,31 @@
+{ "TEXT": [
+
+{	"name": "a",
+	"userimage": "../../App_replication/user.png",
+	"time": "2019-06-23  18-42-29  星期日",
+	"thetitle": "图集",
+	"firstimage": "../../App_replication/firstimage.png",
+	"images": "[../../App_replication/firstimage.png,../../App_replication/firstimage.png,../../App_replication/firstimage.png]",
+	"atext": "这是图集"
+	
+},
+{	"name": "a",
+	"userimage": "../../App_replication/user.png",
+	"time": "2019-06-23  18-42-29  星期日",
+	"thetitle": "图片",
+	"firstimage": "../../App_replication/firstimage.png",
+	"images": "[../../App_replication/firstimage.png]",
+	"atext": "这是图片"
+	
+},
+{	"name": "a",
+	"userimage": "../../App_replication/user.png",
+	"time": "2019-06-23  18-42-29  星期日",
+	"thetitle": "文字",
+	"firstimage": "",
+	"images": "",
+	"atext": "这是文字"
+	
+}
+]
+}

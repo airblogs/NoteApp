@@ -3,14 +3,10 @@ import QtQuick 2.0
 import "savejson.js" as Data
 
 Page{
-
     id:addpage
     title: qsTr("添加")
-
     property string time: Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
     property string imagesource:""
-
-    //打开相机
     rightBarItem: IconButtonBarItem {
         icon: IconType.camera
         color: "white"
@@ -18,45 +14,16 @@ Page{
            nativeUtils.displayCameraPicker("test")
         }
     }
-
-    //将拍照的图片显示
-    Item {
-        id: imagetext
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: textitem.top
-        anchors.topMargin: 10
-        anchors.bottomMargin: 40
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        AppImage {
-            id: image
-            anchors.fill: parent
-            autoTransform: true
-            fillMode: Image.PreserveAspectFit
-        }
-        Connections {
-            target: nativeUtils
-            onCameraPickerFinished: {
-            if(accepted) image.source = path
-            imagesource=path
-            }
-        }
-    }
-
-    //输入文字信息
     Item {
         AppTextField{
             id:title
             anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
             placeholderText: "The title:"
         }
         Text{
             id:text
             anchors.horizontalCenter: parent.horizontalCenter
-            text: qsTr("Please enter the text:")
+            text: qsTr("Piease enter the text:")
             anchors.bottom: textitem.top
             anchors.top:title.bottom
         }
@@ -78,8 +45,36 @@ Page{
             focus: true
         }
     }
+    Item {
+        id: imagetext
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: textitem.top
+        anchors.topMargin: 10
+        anchors.bottomMargin: 40
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        AppImage {
+            id: image
+            anchors.fill: parent
+            autoTransform: true
+            fillMode: Image.PreserveAspectFit
+        }
+        Connections {
+            target: nativeUtils
+            onCameraPickerFinished: {
+            if(accepted) image.source = path
+            imagesource=path
+            console.log(imagesource)
+            }
+        }
+    }
+    //        time=Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
+    ListModel{
+        id:models
+    }
 
-    //添加数据到json
     AppButton{
         id:plus
         icon: IconType.plus
@@ -89,7 +84,7 @@ Page{
         onClicked: {
             time=Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
             var data = {
-                "name":"zlq",
+                "name":"a",
                 "userimage":"qrc:user.png",
                 "time":time,
                 "firstimage":imagesource,
@@ -107,17 +102,7 @@ Page{
             models.append(data)
             var res = Data.serialize(models);
             fileio.text = res;
-
-            //清空
-            imagesource=""
-            image.source=""
-            title.text=""
-            textedit.text=""
-
         }
-    }
-    ListModel{
-        id:models
     }
 
 }

@@ -6,7 +6,6 @@ Page {
     id:mypage
     title: qsTr("我的")
 
-    //显示视频页
   rightBarItem: IconButtonBarItem {
     icon: IconType.circleonotch
     color: "white"
@@ -15,7 +14,6 @@ Page {
     }
   }
 
-  //用户信息
   Item {
       id:useritem
       anchors.top: parent.top
@@ -24,15 +22,14 @@ Page {
       anchors.bottom: buttonitem.top
       Item {
           id: imageitem
-          anchors.top: parent.top
+          anchors.top: parent.bottom
           anchors.left: parent.left
           anchors.right: parent.right
           anchors.bottom: nameitem.top
-          Image {
-              anchors.centerIn: parent
-              id: user
-              source: "qrc:user.png"
-          }
+          //Image {
+              //id: user
+              //source: "file"
+          //}
       }
       Item {
           id: nameitem
@@ -47,8 +44,6 @@ Page {
           }
       }
   }
-
-  //登录退出
   Item {
       id: buttonitem
       height: 200
@@ -85,8 +80,6 @@ Page {
       }
 
   }
-
-  //选项
   Item{
       id:chooseitem
       anchors.top:parent.top

@@ -3,10 +3,8 @@ import QtQuick 2.0
 import "savejson.js" as Data
 
 Page {
-
   id:savepage
   title: qsTr("图集")
-
   property string time: Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
   property string name: "a"
   property string userimage : "qrc:user.png"
@@ -15,7 +13,6 @@ Page {
   property var imagesources:NULL
   property string atext:""
 
-  //选择相册中的图片
   rightBarItem: IconButtonBarItem {
         id:a
         icon: IconType.pictureo
@@ -24,8 +21,6 @@ Page {
             imagedialog.open()
         }
   }
-
-  //将图片路径存入model
   function setFilesModel(){
       filesModel.clear();
       for(var i = 0; i < arguments[0].length; i++){
@@ -34,8 +29,6 @@ Page {
           multiPics.currentIndex = 0;
       }
   }
-
-  //gridview 网格显示
   Item{
       anchors.top: parent.top
       anchors.left: parent.left
@@ -51,12 +44,12 @@ Page {
           delegate: imageDelegate
       }
   }
-
   ListModel{
       id:filesModel
   }
-
-
+  ListModel{
+      id:models
+  }
 
   Component {
       id: imageDelegate
@@ -73,8 +66,6 @@ Page {
               }
           }
       }
-
-  //添加文字按钮
   AppButton{
       icon: IconType.fileo
       anchors.bottomMargin: 0
@@ -84,14 +75,42 @@ Page {
           textdialog.open()
       }
   }
+  AppButton{
+      id:plus
+      icon: IconType.plus
+      anchors.bottomMargin: 0
+      anchors.bottom: parent.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      onClicked: {
+          time=Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
+          var data = {
+              "name":"a",
+              "userimage":"qrc:user.png",
+              "time":time,
+              "firstimage":imagesource,
+              "images":imagesources.toString(),
+              "thetitle":thetitle,
+              "atext":atext
+          }
+          var json = JSON.parse(fileio.text);
+          models.clear()
+          var count = json.TEXT.length;
+          for (var i in json.TEXT) {
+              var t = json.TEXT[ i ];
+              models.append( t );
+          }
+          models.append(data)
+          var res = Data.serialize(models);
+          fileio.text = res;
 
-  //添加文字
+      }
+  }
+
   Dialog{
       id:textdialog
       AppTextField{
           id:title
           placeholderText: "The title:"
-          anchors.horizontalCenter: parent.horizontalCenter
       }
       TextEdit {
           id:thetext
@@ -114,15 +133,18 @@ Page {
       }
   }
 
-  //选择图片
   Dialog{
       id:imagedialog
       positiveActionLabel: "OK"
       negativeActionLabel: "Close"
       onCanceled: close()
       onAccepted: {
+          console.log(imagePicker.selection)
           imagesource=imagePicker.selection[0]
           imagesources=imagePicker.selection
+          console.log(imagesource)
+          console.log(imagesources)
+          console.log(imagePicker.selection)
           setFilesModel(imagePicker.selection)
           close()
       }
@@ -131,48 +153,6 @@ Page {
           id: imagePicker
           anchors.fill: parent
       }
-  }
-
-  //将数据存入jison
-  AppButton{
-      id:plus
-      icon: IconType.plus
-      anchors.bottomMargin: 0
-      anchors.bottom: parent.bottom
-      anchors.horizontalCenter: parent.horizontalCenter
-      onClicked: {
-          time=Qt.formatDateTime(new Date(), "yyyy-MM-dd  hh-mm-ss  dddd")
-          var data = {
-              "name":"zlq",
-              "userimage":"qrc:user.png",
-              "time":time,
-              "firstimage":imagesource,
-              "images":imagesources.toString(),
-              "thetitle":thetitle,
-              "atext":atext
-          }
-          var json = JSON.parse(fileio.text);
-          models.clear()
-          var count = json.TEXT.length;
-          for (var i in json.TEXT) {
-              var t = json.TEXT[ i ];
-              models.append( t );
-          }
-          models.append(data)
-          var res = Data.serialize(models);
-          fileio.text = res;
-
-          //清空
-          imagesource=""
-          imagesources=""
-          filesModel.clear()
-          title.text=""
-          thetext.text=""
-      }
-  }
-
-  ListModel{
-      id:models
   }
 
 }

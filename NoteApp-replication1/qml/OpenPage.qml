@@ -10,29 +10,6 @@ Page{
     property string images:""
     property string  atext:""
     property variant t: []
-
-    //自动刷行显示
-    Timer{
-        interval: 500; running: true; repeat: false
-        onTriggered: {
-            images=images.replace("[",'')
-            images=images.replace("]",'')
-            t=images.split(",")
-            //console.log()
-            if(t.length>1){
-                setFilesModel(t)
-                console.log(t.length)
-            }else if(t.length==1&&t[0]!=""){
-                console.log(t.length)
-                firstimage.source = t[0]
-
-            }else{
-                text.text='<b>内容:</b> '+atext
-            }
-        }
-    }
-
-    //设置model
     function setFilesModel(){
         console.log(arguments[0])
         filesModel.clear();
@@ -43,11 +20,8 @@ Page{
         }
     }
 
-    //多图片显示
     GridView {
         id:multiPics
-        cellHeight: 300
-        cellWidth: 300
         anchors.fill: parent
         property int fillMode: Image.PreserveAspectFit
         model:filesModel
@@ -78,7 +52,6 @@ Page{
         }
     }
 
-    //单图片显示
     AppImage {
     id: firstimage
     anchors.fill: parent
@@ -86,12 +59,29 @@ Page{
     fillMode: Image.PreserveAspectFit
     }
 
-    //文字显示
     Text {
         id: text
     }
+    Timer{
+        interval: 500; running: true; repeat: false
+        onTriggered: {
+            images=images.replace("[",'')
+            images=images.replace("]",'')
+            t=images.split(",")
+            //console.log()
+            if(t.length>1){
+                setFilesModel(t)
+                console.log(t.length)
+            }else if(t.length==1&&t[0]!=""){
+                console.log(t.length)
+                firstimage.source = t[0]
 
-    //点击查看文字
+            }else{
+                text.text='<b>内容:</b> '+atext
+            }
+        }
+    }
+
     AppButton{
         id:textbutton
         icon: IconType.file
@@ -102,8 +92,20 @@ Page{
             textdialog.open()
         }
     }
-
-    //文字显示
+    //AppButton{
+    //    text: "ad"
+    //    anchors.bottomMargin: 0
+    //    anchors.bottom: textbutton.top
+    //    anchors.horizontalCenter: parent.horizontalCenter
+    //    onClicked: {
+    //        if(images.length>1){
+    //            setFilesModel(images)
+    //            console.log(images)
+    //        }else{
+    //            firstimage.source = images[0]
+    //        }
+    //    }
+    //}
     Dialog{
         id:textdialog
         Text {
@@ -114,8 +116,6 @@ Page{
         negativeActionLabel: "Close"
         onCanceled: close()
     }
-
-    //显示多图片选中的大图
     Dialog{
         id:aimage
         positiveAction:false

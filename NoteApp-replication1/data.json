@@ -1,6 +1,6 @@
 { "TEXT": [
 
-{	"name": "zlq",
+{	"name": "a",
     "userimage": "qrc:user.png",
 	"time": "2019-06-23  18-42-29  星期日",
 	"thetitle": "图集",
@@ -9,7 +9,7 @@
 	"atext": "这是图集"
 	
 },
-{	"name": "zlq",
+{	"name": "a",
     "userimage": "qrc:user.png",
 	"time": "2019-06-23  18-42-29  星期日",
 	"thetitle": "图片",
@@ -18,7 +18,7 @@
 	"atext": "这是图片"
 	
 },
-{	"name": "zlq",
+{	"name": "a",
     "userimage": "qrc:user.png",
 	"time": "2019-06-23  18-42-29  星期日",
 	"thetitle": "文字",

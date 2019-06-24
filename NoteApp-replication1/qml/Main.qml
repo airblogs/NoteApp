@@ -4,7 +4,6 @@ import QtQuick 2.0
 App {
     id:app
 
-    //导航页
       Navigation {
           id: navigation
         NavigationItem {
@@ -43,8 +42,6 @@ App {
           }
         }
       }
-
-      //navigationStack.push
       Component { id: openPageComponent; OpenPage { } }
       Component { id: userPageComponent; UserPage { } }
       Component { id: videoPageComponent; VideoPage{ } }

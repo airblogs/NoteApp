@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>user.png</file>
+        <file>firstimage.png</file>
+        <file>mypage1.png</file>
+        <file>mypage2.png</file>
+        <file>mypage3.png</file>
+        <file>data.json</file>
+    </qresource>
+</RCC>

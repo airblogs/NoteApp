@@ -1,0 +1,31 @@
+{ "TEXT": [
+
+{	"name": "zlq",
+    "userimage": "qrc:user.png",
+	"time": "2019-06-23  18-42-29  星期日",
+	"thetitle": "图集",
+    "firstimage": "qrc:firstimage.png",
+    "images": "[qrc:firstimage.png,qrc:firstimage.png,qrc:firstimage.png]",
+	"atext": "这是图集"
+	
+},
+{	"name": "zlq",
+    "userimage": "qrc:user.png",
+	"time": "2019-06-23  18-42-30  星期日",
+	"thetitle": "图片",
+    "firstimage": "qrc:firstimage.png",
+    "images": "[qrc:firstimage.png]",
+	"atext": "这是图片"
+	
+},
+{	"name": "zlq",
+    "userimage": "qrc:user.png",
+	"time": "2019-06-23  18-42-31  星期日",
+	"thetitle": "文字",
+	"firstimage": "",
+	"images": "",
+	"atext": "这是文字"
+	
+}
+]
+}
